@@ -41,19 +41,19 @@
         <div class="form-group">
           <label for="name">Nama</label>
           <div class="input-group mb-3">
-            <input class="form-control" name="name" placeholder="Nama" value="{{ old('name') }}" required>
+            <input class="form-control" name="name" placeholder="Nama" value="{{ $data->name }}" required>
           </div>
         </div>
         <div class="form-group">
           <label for="name">Deskripsi Testimoni</label>
           <div class="input-group mb-3">
-            <textarea class="form-control" name="description" placeholder="Deskripsi" required>{{ old('description') }}</textarea>
+            <textarea class="form-control" name="description" placeholder="Deskripsi" required>{{ $data->description }}</textarea>
           </div>
         </div>
         <div class="form-group">
           <label for="sequence">Urutan</label>
           <div class="input-group mb-3">
-            <input type="number" class="form-control moneyform" name="sequence" placeholder="0" value="{{ old('sequence') }}" required>
+            <input type="number" class="form-control moneyform" name="sequence" placeholder="0" value="{{ $data->sequence }}" required>
           </div>
         </div>
       </div>

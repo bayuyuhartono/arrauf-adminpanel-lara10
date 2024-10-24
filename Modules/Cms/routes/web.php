@@ -23,6 +23,8 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('testimoni', [CmsTestimoniController::class, 'index']);
         Route::get('testimoni/add', [CmsTestimoniController::class, 'add']);
         Route::post('testimoni/add', [CmsTestimoniController::class, 'store']);
-
+        Route::get('testimoni/edit/{id}', [CmsTestimoniController::class, 'edit']);
+        Route::post('testimoni/edit/{id}', [CmsTestimoniController::class, 'update']);
+        Route::get('testimoni/delete/{id}', [CmsTestimoniController::class, 'delete']);
     });
 });

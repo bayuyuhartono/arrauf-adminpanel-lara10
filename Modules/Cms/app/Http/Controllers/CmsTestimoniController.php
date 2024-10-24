@@ -13,7 +13,7 @@ class CmsTestimoniController extends Controller
     public function index()
     {
         $data['title'] = 'CMS Testimoni';
-        $data['list'] = Cms::getTestimoni();
+        $data['list'] = Cms::getTestimoniList();
 
         return view('cms::testimoni.list', $data);
     }
@@ -33,5 +33,30 @@ class CmsTestimoniController extends Controller
         Cms::saveTestimoni($saveData);
 
         return back()->with('success', 'Testimoni berhasil ditambah!');
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $data['title'] = 'CMS Testimoni';
+        $data['data'] = Cms::getTestimoni($id);
+
+        return view('cms::testimoni.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $saveData['name'] = $request->name;
+        $saveData['description'] = $request->description;
+        $saveData['sequence'] = $request->sequence;
+        Cms::updateTestimoni($id, $saveData);
+
+        return back()->with('success', 'Testimoni berhasil diubah!');
+    }
+
+    public function delete(Request $request, $id)
+    {
+        Cms::deleteTestimoni($id);
+
+        return back()->with('success', 'Testimoni berhasil dihapus!');
     }
 }

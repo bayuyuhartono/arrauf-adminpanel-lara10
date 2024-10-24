@@ -25,7 +25,7 @@ class Cms extends Model
         return $query;
     }
 
-    public function scopeGetTestimoni($query)
+    public function scopeGetTestimoniList($query)
     {
         $query = DB::table("cms_testimoni")
             ->select('*')
@@ -39,6 +39,34 @@ class Cms extends Model
     {
         $query = DB::table("cms_testimoni")
             ->insert($data);
+
+        return $query;
+    }
+
+    public function scopeGetTestimoni($query, $id)
+    {
+        $query = DB::table("cms_testimoni")
+            ->select('*')
+            ->where('id', $id)
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateTestimoni($query, $id, $data)
+    {
+        $query = DB::table("cms_testimoni")
+            ->where('id',$id)
+            ->update($data);
+
+        return $query;
+    }
+
+    public function scopeDeleteTestimoni($query, $id)
+    {
+        $query = DB::table("cms_testimoni")
+            ->where('id',$id)
+            ->delete();
 
         return $query;
     }
