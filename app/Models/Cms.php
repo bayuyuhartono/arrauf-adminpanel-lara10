@@ -7,13 +7,38 @@ use Illuminate\Support\Facades\DB;
 
 class Cms extends Model
 {
-    public function scopeGetAddress($query)
+    public function scopeGetWallpaper($query)
     {
-        $query = DB::table("v2_address As address")
-            ->select('address.title','address.detail','address.phone')
-            ->where('address.status', 1)
-            ->orderBy('address.order')
+        $query = DB::table("cms_wallpaper")
+            ->select('*')
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateWallpaper($query, $data)
+    {
+        $query = DB::table("cms_wallpaper")
+            ->where('id',$data['id'])
+            ->update($data);
+
+        return $query;
+    }
+
+    public function scopeGetTestimoni($query)
+    {
+        $query = DB::table("cms_testimoni")
+            ->select('*')
+            ->orderBy('sequence', 'asc')
             ->get();
+
+        return $query;
+    }
+
+    public function scopeSaveTestimoni($query, $data)
+    {
+        $query = DB::table("cms_testimoni")
+            ->insert($data);
 
         return $query;
     }

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Cms\app\Http\Controllers\CmsController;
+use Modules\Cms\app\Http\Controllers\CmsWallpaperController;
+use Modules\Cms\app\Http\Controllers\CmsTestimoniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,14 @@ use Modules\Cms\app\Http\Controllers\CmsController;
 |
 */
 
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','has-permission'])->group(function () {
     Route::prefix('cms')->group(function () {
-        Route::get('address', [CmsController::class, 'listAddress']);
-        Route::get('address/add', [CmsController::class, 'addAddress']);
+        Route::get('wallpaper', [CmsWallpaperController::class, 'form']);
+        Route::post('wallpaper', [CmsWallpaperController::class, 'updateAction']);
+
+        Route::get('testimoni', [CmsTestimoniController::class, 'index']);
+        Route::get('testimoni/add', [CmsTestimoniController::class, 'add']);
+        Route::post('testimoni/add', [CmsTestimoniController::class, 'store']);
+
     });
 });

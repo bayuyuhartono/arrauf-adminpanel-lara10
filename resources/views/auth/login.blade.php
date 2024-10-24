@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="robots" content="noindex,nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login | J99 Trans Admin</title>
-  <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/tab_icon.png')}}">
+  <title>Login | Ar-Rauf Admin panel</title>
+  <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/tab_icon_yellow.png')}}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,16 +16,16 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/ui/dist/css/adminlte.min.css')}}">
 </head>
-<body class="hold-transition login-page" style="background-image:url('{{asset('assets/images/roadwallp.jpg')}}');background-repeat:no-repeat;background-size:cover;opacity:0.93">
+<body class="hold-transition login-page" style="background-image:url('{{asset('assets/images/onboard_wall.jpg')}}');background-repeat:no-repeat;background-size:cover;opacity:0.93">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-danger">
+  <div class="card card-outline card-secondary">
     <div class="card-header text-center">
-        <img src="{{asset('assets/images/logo/j99-logo-wide.png')}}" alt="J99 Logo" height="38" style="opacity: .8">
+        <img src="{{asset('assets/images/logo/arrauf_logo_square.png')}}" alt="Ar-Rauf Logo" height="38" style="opacity: .8">
     </div>
     <div class="card-body">
       @if($errors->any())
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-secondary alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h5><i class="icon fas fa-ban"></i> Error!</h5>
           {{ $errors->first() }}
@@ -52,7 +52,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-danger btn-block">Masuk</button>
+            <button type="submit" class="btn btn-secondary btn-block">Masuk</button>
           </div>
           <!-- /.col -->
         </div>
