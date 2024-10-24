@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Cms extends Model
 {
+    // wallpaper
     public function scopeGetWallpaper($query)
     {
         $query = DB::table("cms_wallpaper")
@@ -25,6 +26,26 @@ class Cms extends Model
         return $query;
     }
 
+    // quote
+    public function scopeGetQuote($query)
+    {
+        $query = DB::table("cms_quote")
+            ->select('*')
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateQuote($query, $data)
+    {
+        $query = DB::table("cms_quote")
+            ->where('id',$data['id'])
+            ->update($data);
+
+        return $query;
+    }
+
+    // testimoni
     public function scopeGetTestimoniList($query)
     {
         $query = DB::table("cms_testimoni")
@@ -65,6 +86,53 @@ class Cms extends Model
     public function scopeDeleteTestimoni($query, $id)
     {
         $query = DB::table("cms_testimoni")
+            ->where('id',$id)
+            ->delete();
+
+        return $query;
+    }
+
+    // motto
+    public function scopeGetMottoList($query)
+    {
+        $query = DB::table("cms_motto")
+            ->select('*')
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function scopeSaveMotto($query, $data)
+    {
+        $query = DB::table("cms_motto")
+            ->insert($data);
+
+        return $query;
+    }
+
+    public function scopeGetMotto($query, $id)
+    {
+        $query = DB::table("cms_motto")
+            ->select('*')
+            ->where('id', $id)
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateMotto($query, $id, $data)
+    {
+        $query = DB::table("cms_motto")
+            ->where('id',$id)
+            ->update($data);
+
+        return $query;
+    }
+
+    public function scopeDeleteMotto($query, $id)
+    {
+        $query = DB::table("cms_motto")
             ->where('id',$id)
             ->delete();
 
