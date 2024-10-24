@@ -36,19 +36,10 @@
   <!-- form start -->
   <form action="{{ url()->current() }}" method="post" enctype="multipart/form-data">
     @csrf
-    <input type="hidden" id="id" name="id" value={{ $data->id }}>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="image">Gambar</label>
-        <div class="col-sm-6">
-          @if (isset($data->wallpaper_image))
-            <img class="img-fluid" src="{{ asset($data->wallpaper_image) }}" alt="Photo" width="400"> 
-          @else
-            <img class="img-fluid" src="{{ asset('assets/images/sample/nopict.jpg') }}" alt="Photo" width="400">
-          @endif
-        </div>
-        <br>
-        <div class="col-sm-6">
+    <div class="card-body row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="image">Gambar</label>
           <div class="input-group">
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="image" name="image">
@@ -59,31 +50,26 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Deskripsi</label>
-        <textarea id="summernote" rows="40" cols="6" name="content">
-          {{ isset($data->wallpaper_text) ? $data->wallpaper_text : '' }}
-        </textarea>
+        <div class="form-group">
+          <label for="caption">Text</label>
+          <div class="input-group mb-3">
+            <input class="form-control" name="caption" placeholder="Caption" value="{{ old('caption') }}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sequence">Urutan</label>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control moneyform" name="sequence" placeholder="0" value="{{ old('sequence') }}" required>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card-footer">
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="{{ url('usermanagement/role') }}" onclick="return confirm('Anda yakin mau kembali?')" class="btn btn-success">Kembali</a>
+      <a href="{{ url('cms/banner') }}" onclick="return confirm('Anda yakin mau kembali?')" class="btn btn-success">Kembali</a>
     </div>
   </form>
 </div>
  
 @endsection
 
-@push('extra-scripts')
-<script src="{{asset('assets/ui/plugins/summernote/summernote-bs4.min.js')}}"></script>
-<script type="text/javascript">
-  $(function () {
-    $('#summernote').summernote(
-    {
-      height: 300,
-    });
-  });
-</script>
-@endpush

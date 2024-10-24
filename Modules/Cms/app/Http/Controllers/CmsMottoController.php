@@ -45,10 +45,10 @@ class CmsMottoController extends Controller
 
     public function update(Request $request, $id)
     {
-        $saveData['title'] = $request->title;
-        $saveData['description'] = $request->description;
-        $saveData['sequence'] = $request->sequence;
-        Cms::updateMotto($id, $saveData);
+        $updateData['title'] = $request->title;
+        $updateData['description'] = $request->description;
+        $updateData['sequence'] = $request->sequence;
+        Cms::updateMotto($id, $updateData);
 
         return back()->with('success', 'Motto berhasil diubah!');
     }

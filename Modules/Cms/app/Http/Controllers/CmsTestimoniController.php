@@ -45,10 +45,10 @@ class CmsTestimoniController extends Controller
 
     public function update(Request $request, $id)
     {
-        $saveData['name'] = $request->name;
-        $saveData['description'] = $request->description;
-        $saveData['sequence'] = $request->sequence;
-        Cms::updateTestimoni($id, $saveData);
+        $updateData['name'] = $request->name;
+        $updateData['description'] = $request->description;
+        $updateData['sequence'] = $request->sequence;
+        Cms::updateTestimoni($id, $updateData);
 
         return back()->with('success', 'Testimoni berhasil diubah!');
     }

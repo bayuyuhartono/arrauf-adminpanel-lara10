@@ -20,13 +20,15 @@ class CmsWallpaperController extends Controller
 
     public function updateAction(Request $request)
     {
-        $path = 'assets/images/cms/wallpaper/';
-        $imageName = 'arrauf_wall'.'.'.$request->image->extension();  
-        $request->image->move(public_path($path), $imageName);
+        if (isset($request->image)) {
+            $path = 'assets/images/cms/wallpaper/';
+            $imageName = 'arrauf_wall'.'.'.$request->image->extension();  
+            $request->image->move(public_path($path), $imageName);
+            $updateData['wallpaper_image'] = $path.$imageName;
+        }
 
         $updateData['id'] = $request->id;
         $updateData['wallpaper_text'] = $request->content;
-        $updateData['wallpaper_image'] = $path.$imageName;
         Cms::updateWallpaper($updateData);
 
         return back()->with('success', 'Wallpaper berhasil diubah!');

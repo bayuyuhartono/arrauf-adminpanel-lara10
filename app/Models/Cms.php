@@ -138,4 +138,52 @@ class Cms extends Model
 
         return $query;
     }
+
+    // gallery
+    public function scopeGetGalleryList($query, $type)
+    {
+        $query = DB::table("cms_gallery")
+            ->select('*')
+            ->where('type', $type)
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function scopeSaveGallery($query, $data)
+    {
+        $query = DB::table("cms_gallery")
+            ->insert($data);
+
+        return $query;
+    }
+
+    public function scopeGetGallery($query, $uuid)
+    {
+        $query = DB::table("cms_gallery")
+            ->select('*')
+            ->where('uuid', $uuid)
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateGallery($query, $uuid, $data)
+    {
+        $query = DB::table("cms_gallery")
+            ->where('uuid',$uuid)
+            ->update($data);
+
+        return $query;
+    }
+
+    public function scopeDeleteGallery($query, $uuid)
+    {
+        $query = DB::table("cms_gallery")
+            ->where('uuid',$uuid)
+            ->delete();
+
+        return $query;
+    }
 }
