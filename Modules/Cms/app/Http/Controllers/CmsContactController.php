@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Cms;
 
-class CmsFooterController extends Controller
+class CmsContactController extends Controller
 {
     public function form()
     {
-        $data['title'] = 'CMS Footer';
-        $data['data'] = Cms::getFooter();
+        $data['title'] = 'CMS Contact';
+        $data['data'] = Cms::getContact();
 
-        return view('cms::footer.form', $data);
+        return view('cms::contact.form', $data);
     }
 
     public function updateAction(Request $request)
@@ -26,9 +26,9 @@ class CmsFooterController extends Controller
             $updateData['link'] = $request->link[$key];
             $updateData['sequence'] = $request->sequence[$key];
             $updateData['is_active'] = $request->is_active[$key];
-            Cms::updateFooter($updateData);
+            Cms::updateContact($updateData);
         }
 
-        return back()->with('success', 'Footer berhasil diubah!');
+        return back()->with('success', 'Contact berhasil diubah!');
     }
 }

@@ -36,10 +36,10 @@ class Cms extends Model
         return $query;
     }
 
-    // footer
-    public function scopeGetFooter($query)
+    // sosmed
+    public function scopeGetContact($query)
     {
-        $query = DB::table("cms_footer")
+        $query = DB::table("cms_contact")
             ->select('*')
             ->orderBy('sequence', 'asc')
             ->get();
@@ -47,9 +47,9 @@ class Cms extends Model
         return $query;
     }
 
-    public function scopeUpdateFooter($query, $data)
+    public function scopeUpdateContact($query, $data)
     {
-        $query = DB::table("cms_footer")
+        $query = DB::table("cms_contact")
             ->where('id',$data['id'])
             ->update($data);
 

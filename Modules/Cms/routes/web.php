@@ -6,7 +6,7 @@ use Modules\Cms\app\Http\Controllers\CmsTestimoniController;
 use Modules\Cms\app\Http\Controllers\CmsMottoController;
 use Modules\Cms\app\Http\Controllers\CmsQuoteController;
 use Modules\Cms\app\Http\Controllers\CmsGalleryController;
-use Modules\Cms\app\Http\Controllers\CmsFooterController;
+use Modules\Cms\app\Http\Controllers\CmsContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +29,9 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('quote', [CmsQuoteController::class, 'form']);
         Route::post('quote', [CmsQuoteController::class, 'updateAction']);
 
-        // footer
-        Route::get('footer', [CmsFooterController::class, 'form']);
-        Route::post('footer', [CmsFooterController::class, 'updateAction']);
+        // contact
+        Route::get('contact', [CmsContactController::class, 'form']);
+        Route::post('contact', [CmsContactController::class, 'updateAction']);
 
         // testimoni 
         Route::get('testimoni', [CmsTestimoniController::class, 'index']);
