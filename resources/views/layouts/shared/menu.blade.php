@@ -18,9 +18,11 @@
           <ul class="nav nav-treeview">
             @foreach ($menu->child as $child)
             @php
-                $segmentCheck = (isset(explode("/", $child->url)[1])) 
-                  ? (request()->segment(2) === explode("/", $child->url)[1]) 
-                  : (request()->segment(1)  === $child->url);
+                $multipleController = ['gallery'];
+                $segmentNumber = in_array(request()->segment(2), $multipleController) ? 3 : 2;
+                $segmentCheck = (isset(explode("/", $child->url)[$segmentNumber - 1])) 
+                  ? (request()->segment($segmentNumber) === explode("/", $child->url)[$segmentNumber - 1]) 
+                  : (request()->segment($segmentNumber - 1)  === $child->url);
             @endphp
               <li class="nav-item">
                 <a href="{{ url($child->url) }}" class="nav-link {{ $segmentCheck ? 'active' : '' }}">

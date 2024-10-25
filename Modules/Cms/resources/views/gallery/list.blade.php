@@ -7,8 +7,8 @@
     <div class="card-header">
         <h3 class="card-title">List {{ $title }}</h3>
         <div class="float-right">
-          @if (permissionCheck('add'))
-            <a href="{{ url('cms/banner/add') }}" class="btn bg-gradient-primary btn-sm">Tambah data</a>
+          @if (permissionCheck('add', '', 3))
+            <a href="{{ url('cms/gallery/'.$type.'/add') }}" class="btn bg-gradient-primary btn-sm">Tambah data</a>
           @endif
         </div>
     </div>
@@ -36,8 +36,8 @@
               <td>{{ $value->caption }}</td>
               <td>
                 <div class="btn-group btn-block">
-                  @if (permissionCheck('show')) <a href="{{ url('cms/banner/edit/'.$value->uuid) }}" class="btn btn-warning btn-sm">Edit</a> @endif
-                  @if (permissionCheck('delete')) <a href="{{ url('cms/banner/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm">Hapus</a> @endif
+                  @if (permissionCheck('show', '', 3)) <a href="{{ url('cms/gallery/'.$type.'/edit/'.$value->uuid) }}" class="btn btn-warning btn-sm">Edit</a> @endif
+                  @if (permissionCheck('delete', '', 3)) <a href="{{ url('cms/gallery/'.$type.'/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm">Hapus</a> @endif
                 </div>
               </td>
             </tr>

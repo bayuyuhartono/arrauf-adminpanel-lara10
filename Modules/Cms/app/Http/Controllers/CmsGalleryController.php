@@ -13,6 +13,7 @@ class CmsGalleryController extends Controller
     public function index(Request $request, $type)
     {
         $data['title'] = 'CMS '.$type;
+        $data['type'] = $type;
         $data['list'] = Cms::getGalleryList($type);
 
         return view('cms::gallery.list', $data);
@@ -21,6 +22,7 @@ class CmsGalleryController extends Controller
     public function add(Request $request, $type)
     {
         $data['title'] = 'CMS '.$type;
+        $data['type'] = $type;
 
         return view('cms::gallery.add', $data);
     }
@@ -47,6 +49,7 @@ class CmsGalleryController extends Controller
     public function edit(Request $request, $type, $uuid)
     {
         $data['title'] = 'CMS '.$type;
+        $data['type'] = $type;
         $data['data'] = Cms::getGallery($uuid);
 
         return view('cms::gallery.edit', $data);
