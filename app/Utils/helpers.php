@@ -1,7 +1,20 @@
 <?php
   
-function dateFormat($date,$format){
-    return \Carbon\Carbon::createFromFormat('Y-m-d', $date)->format($format);    
+function dateTimeFormat($date){
+  return \Carbon\Carbon::parse($date)->format('d M Y - g:i A');
+}
+
+function dateFormat($date){
+  return \Carbon\Carbon::parse($date)->format('d M Y');
+}
+
+function dateTimeSlashFormat($date){
+  return \Carbon\Carbon::parse($date)->format('d/m/Y g:i A');
+}
+
+function dateRangeFormFormat($startDate, $finishDate){
+  $dateConvert = dateTimeSlashFormat($startDate).' - '.dateTimeSlashFormat($finishDate);
+  return $dateConvert;
 }
 
 function trimString($string, $repl, $limit) 
