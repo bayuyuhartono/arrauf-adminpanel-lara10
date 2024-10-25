@@ -17,4 +17,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-public/assets/images/cms/blog
+/public/assets/images/cms/blog
