@@ -34,35 +34,60 @@ class BlogNewsController extends Controller
 
     public function store(Request $request)
     {
+        $slug = sluggify($request->title);
+        $uuid = generateUuid();
+        
+        if (isset($request->image)) {
+            $path = 'assets/images/blog/news/';
+            $imageName = $slug.'-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
+            $request->image->move(public_path($path), $imageName);
+            $saveData['image'] = $path.$imageName;
+        }
+
+        $saveData['category'] = $this->category;
         $saveData['title'] = $request->title;
-        $saveData['description'] = $request->description;
-        $saveData['sequence'] = $request->sequence;
+        $saveData['content'] = $request->content;
+        $saveData['tags'] = $request->tags;
+        $saveData['is_active'] = $request->is_active;
+        $saveData['slug'] = $slug;
         Blog::saveBlog($saveData);
 
         return back()->with('success', 'News berhasil ditambah!');
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $uuid)
     {
         $data['title'] = 'CMS News';
-        $data['data'] = Blog::getBlog($id);
+        $data['data'] = Blog::getBlog($uuid);
 
         return view('blog::news.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
+        $slug = sluggify($request->title);
+
+        if (isset($request->image)) {
+            $path = 'assets/images/blog/news/';
+            $imageName = $slug.'-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
+            $request->image->move(public_path($path), $imageName);
+            $updateData['image'] = $path.$imageName;
+        }
+
+        $updateData['category'] = $this->category;
         $updateData['title'] = $request->title;
-        $updateData['description'] = $request->description;
-        $updateData['sequence'] = $request->sequence;
-        Blog::updateBlog($id, $updateData);
+        $updateData['content'] = $request->content;
+        $updateData['tags'] = $request->tags;
+        $updateData['is_active'] = $request->is_active;
+        $updateData['slug'] = $slug;
+        Blog::updateBlog($uuid, $updateData);
 
         return back()->with('success', 'News berhasil diubah!');
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $uuid)
     {
-        Blog::deleteBlog($id);
+        Blog::deleteBlog($uuid);
 
         return back()->with('success', 'News berhasil dihapus!');
     }

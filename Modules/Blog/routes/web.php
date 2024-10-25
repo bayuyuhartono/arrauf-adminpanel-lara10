@@ -20,8 +20,8 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('news', [BlogNewsController::class, 'index']);
         Route::get('news/add', [BlogNewsController::class, 'add']);
         Route::post('news/add', [BlogNewsController::class, 'store']);
-        Route::get('news/edit/{id}', [BlogNewsController::class, 'edit']);
-        Route::post('news/edit/{id}', [BlogNewsController::class, 'update']);
-        Route::get('news/delete/{id}', [BlogNewsController::class, 'delete']);
+        Route::get('news/edit/{uuid}', [BlogNewsController::class, 'edit']);
+        Route::post('news/edit/{uuid}', [BlogNewsController::class, 'update']);
+        Route::get('news/delete/{uuid}', [BlogNewsController::class, 'delete']);
     });
 });

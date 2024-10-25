@@ -12,6 +12,7 @@ class Blog extends Model
         $query = DB::table("blog")
             ->select('*')
             ->where('category', $category)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return $query;
@@ -25,29 +26,29 @@ class Blog extends Model
         return $query;
     }
 
-    public function scopeGetBlog($query, $id)
+    public function scopeGetBlog($query, $uuid)
     {
         $query = DB::table("blog")
             ->select('*')
-            ->where('id', $id)
+            ->where('uuid', $uuid)
             ->first();
 
         return $query;
     }
 
-    public function scopeUpdateBlog($query, $id, $data)
+    public function scopeUpdateBlog($query, $uuid, $data)
     {
         $query = DB::table("blog")
-            ->where('id',$id)
+            ->where('uuid',$uuid)
             ->update($data);
 
         return $query;
     }
 
-    public function scopeDeleteBlog($query, $id)
+    public function scopeDeleteBlog($query, $uuid)
     {
         $query = DB::table("blog")
-            ->where('id',$id)
+            ->where('uuid',$uuid)
             ->delete();
 
         return $query;
