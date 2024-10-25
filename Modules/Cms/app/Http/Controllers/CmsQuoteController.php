@@ -25,6 +25,6 @@ class CmsQuoteController extends Controller
         $updateData['quote_sub'] = $request->quote_sub;
         Cms::updateQuote($updateData);
 
-        return back()->with('success', 'Wallpaper berhasil diubah!');
+        return back()->with('success', 'Quote berhasil diubah!');
     }
 }

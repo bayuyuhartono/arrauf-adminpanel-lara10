@@ -140,7 +140,6 @@
 <script src="{{asset('assets/ui/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('assets/ui/dist/js/adminlte.js')}}"></script>
-<script src="{{asset('assets/ui/dist/js/pages/dashboard.js')}}"></script>
 <!-- Page specific script -->
 @stack('extra-scripts')
 <script>

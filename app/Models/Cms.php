@@ -36,9 +36,20 @@ class Cms extends Model
         return $query;
     }
 
-    public function scopeUpdateQuote($query, $data)
+    // footer
+    public function scopeGetFooter($query)
     {
-        $query = DB::table("cms_quote")
+        $query = DB::table("cms_footer")
+            ->select('*')
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function scopeUpdateFooter($query, $data)
+    {
+        $query = DB::table("cms_footer")
             ->where('id',$data['id'])
             ->update($data);
 
