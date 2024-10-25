@@ -5,7 +5,7 @@ use Modules\Cms\app\Http\Controllers\CmsWallpaperController;
 use Modules\Cms\app\Http\Controllers\CmsTestimoniController;
 use Modules\Cms\app\Http\Controllers\CmsMottoController;
 use Modules\Cms\app\Http\Controllers\CmsQuoteController;
-use Modules\Cms\app\Http\Controllers\CmsBannerController;
+use Modules\Cms\app\Http\Controllers\CmsGalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +43,17 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('motto/edit/{id}', [CmsMottoController::class, 'edit']);
         Route::post('motto/edit/{id}', [CmsMottoController::class, 'update']);
         Route::get('motto/delete/{id}', [CmsMottoController::class, 'delete']);
+    });
+});
 
-        // banner 
-        Route::get('banner', [CmsBannerController::class, 'index']);
-        Route::get('banner/add', [CmsBannerController::class, 'add']);
-        Route::post('banner/add', [CmsBannerController::class, 'store']);
-        Route::get('banner/edit/{uuid}', [CmsBannerController::class, 'edit']);
-        Route::post('banner/edit/{uuid}', [CmsBannerController::class, 'update']);
-        Route::get('banner/delete/{uuid}', [CmsBannerController::class, 'delete']);
+Route::middleware(['auth','has-permission-segfour'])->group(function () {
+    Route::prefix('cms')->group(function () {
+        // gallery 
+        Route::get('gallery/{type}', [CmsGalleryController::class, 'index']);
+        Route::get('gallery/{type}/add', [CmsGalleryController::class, 'add']);
+        Route::post('gallery/{type}/add', [CmsGalleryController::class, 'store']);
+        Route::get('gallery/{type}/edit/{uuid}', [CmsGalleryController::class, 'edit']);
+        Route::post('gallery/{type}/edit/{uuid}', [CmsGalleryController::class, 'update']);
+        Route::get('gallery/{type}/delete/{uuid}', [CmsGalleryController::class, 'delete']);
     });
 });

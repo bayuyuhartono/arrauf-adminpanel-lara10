@@ -51,9 +51,9 @@ function getRoleAccessData($role_id)
     return $result;
 }
 
-function getSlugUrl()
+function getSlugUrl($seg=2)
 {
-    return request()->segment(2) ? request()->segment(2) : request()->segment(1);
+    return request()->segment($seg) ? request()->segment($seg) : request()->segment($seg-1);
 }
 
 function permissionCheck($access, $directSlug = '')
