@@ -41,7 +41,7 @@
               <td>
                 <div class="btn-group btn-block">
                   @if (permissionCheck('show')) <a href="{{ url('blog/pages/edit/'.$value->uuid) }}" class="btn btn-warning btn-sm">Edit</a> @endif
-                  @if (permissionCheck('delete')) <a href="{{ url('blog/pages/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm">Hapus</a> @endif
+                  @if (permissionCheck('delete')) <a href="{{ url('blog/pages/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin hapus data ini?')">Hapus</a> @endif
                 </div>
               </td>
             </tr>

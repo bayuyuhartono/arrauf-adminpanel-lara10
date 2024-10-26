@@ -37,7 +37,7 @@
               <td>
                 <div class="btn-group btn-block">
                   @if (permissionCheck('show', '', 3)) <a href="{{ url('cms/gallery/'.$type.'/edit/'.$value->uuid) }}" class="btn btn-warning btn-sm">Edit</a> @endif
-                  @if (permissionCheck('delete', '', 3)) <a href="{{ url('cms/gallery/'.$type.'/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm">Hapus</a> @endif
+                  @if (permissionCheck('delete', '', 3)) <a href="{{ url('cms/gallery/'.$type.'/delete/'.$value->uuid) }}" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin hapus data ini?')">Hapus</a> @endif
                 </div>
               </td>
             </tr>
