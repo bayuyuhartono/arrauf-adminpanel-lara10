@@ -39,28 +39,28 @@
     <div class="card-body row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label for="title">Nama</label>
+          <label for="title">Judul</label>
           <div class="input-group mb-3">
-            <input class="form-control" name="title" placeholder="Judul" value="{{ $data->title }}" required>
+            <input class="form-control" name="title" placeholder="Judul" value="{{ old('title') }}" required>
           </div>
         </div>
         <div class="form-group">
-          <label for="name">Deskripsi Motto</label>
+          <label for="name">Point Benefit</label>
           <div class="input-group mb-3">
-            <textarea class="form-control" name="description" placeholder="Deskripsi" required>{{ $data->description }}</textarea>
+            <textarea class="form-control" name="point" placeholder="Deskripsi" required>{{ old('point') }}</textarea>
           </div>
         </div>
         <div class="form-group">
           <label for="sequence">Urutan</label>
           <div class="input-group mb-3">
-            <input type="number" class="form-control moneyform" name="sequence" placeholder="0" value="{{ $data->sequence }}" required>
+            <input type="number" class="form-control moneyform" name="sequence" placeholder="0" value="{{ old('sequence') }}" required>
           </div>
         </div>
       </div>
     </div>
     <div class="card-footer">
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="{{ url('cms/motto') }}" onclick="return confirm('Anda yakin mau kembali?')" class="btn btn-success">Kembali</a>
+      <a href="{{ url('cms/benefit') }}" onclick="return confirm('Anda yakin mau kembali?')" class="btn btn-success">Kembali</a>
     </div>
   </form>
 </div>

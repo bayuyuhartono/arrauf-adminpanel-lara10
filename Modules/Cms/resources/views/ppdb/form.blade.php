@@ -39,32 +39,34 @@
     <input type="hidden" id="id" name="id" value={{ $data->id }}>
     <div class="card-body">
       <div class="form-group">
-        <label for="image">Gambar</label>
-        <div class="col-sm-6">
-          @if (isset($data->wallpaper_image))
-            <img class="img-fluid" src="{{ asset($data->wallpaper_image) }}" alt="Photo" width="400"> 
-          @else
-            <img class="img-fluid" src="{{ asset('assets/images/sample/nopict.jpg') }}" alt="Photo" width="400">
-          @endif
-        </div>
-        <br>
-        <div class="col-sm-6">
-          <div class="input-group">
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="image" name="image">
-              <label class="custom-file-label" for="image">Choose file</label>
-            </div>
-            <div class="input-group-append">
-              <span class="input-group-text">Upload</span>
-            </div>
-          </div>
+        <label for="text">Text</label>
+        <div class="input-group mb-3">
+          <input class="form-control" name="text" placeholder="Text" value="{{ $data->text }}" required>
         </div>
       </div>
       <div class="form-group">
-        <label>Deskripsi</label>
-        <textarea id="summernote" rows="40" cols="6" name="content">
-          {{ isset($data->wallpaper_text) ? $data->wallpaper_text : '' }}
-        </textarea>
+        <label for="link">Link</label>
+        <div class="input-group mb-3">
+          <input class="form-control" name="link" placeholder="Link" value="{{ $data->link }}" required>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label for="name">Status</label>
+        <div class="input-group mb-3">
+          <div class="icheck-danger d-inline">
+            <input type="radio" id="{{ 'is_active_false'.$data->id }}" value="0" name="is_active" {{ $data->is_active !== 1 ? 'checked' : '' }} >
+            <label for="{{ 'is_active_false'.$data->id }}">
+              Tidak Aktif
+            </label>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="icheck-primary d-inline">
+            <input type="radio" id="{{ 'is_active_true'.$data->id }}" value="1" name="is_active" {{ $data->is_active === 1 ? 'checked' : '' }} >
+            <label for="{{ 'is_active_true'.$data->id }}">
+              Aktif
+            </label>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card-footer">

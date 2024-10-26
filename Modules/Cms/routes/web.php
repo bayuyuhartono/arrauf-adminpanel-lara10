@@ -7,6 +7,8 @@ use Modules\Cms\app\Http\Controllers\CmsMottoController;
 use Modules\Cms\app\Http\Controllers\CmsQuoteController;
 use Modules\Cms\app\Http\Controllers\CmsGalleryController;
 use Modules\Cms\app\Http\Controllers\CmsContactController;
+use Modules\Cms\app\Http\Controllers\CmsBenefitController;
+use Modules\Cms\app\Http\Controllers\CmsPpdbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,10 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('contact', [CmsContactController::class, 'form']);
         Route::post('contact', [CmsContactController::class, 'updateAction']);
 
+        // ppdb
+        Route::get('ppdb', [CmsPpdbController::class, 'form']);
+        Route::post('ppdb', [CmsPpdbController::class, 'updateAction']);
+
         // testimoni 
         Route::get('testimoni', [CmsTestimoniController::class, 'index']);
         Route::get('testimoni/add', [CmsTestimoniController::class, 'add']);
@@ -48,6 +54,14 @@ Route::middleware(['auth','has-permission'])->group(function () {
         Route::get('motto/edit/{id}', [CmsMottoController::class, 'edit']);
         Route::post('motto/edit/{id}', [CmsMottoController::class, 'update']);
         Route::get('motto/delete/{id}', [CmsMottoController::class, 'delete']);
+
+        // benefit 
+        Route::get('benefit', [CmsBenefitController::class, 'index']);
+        Route::get('benefit/add', [CmsBenefitController::class, 'add']);
+        Route::post('benefit/add', [CmsBenefitController::class, 'store']);
+        Route::get('benefit/edit/{id}', [CmsBenefitController::class, 'edit']);
+        Route::post('benefit/edit/{id}', [CmsBenefitController::class, 'update']);
+        Route::get('benefit/delete/{id}', [CmsBenefitController::class, 'delete']);
     });
 });
 

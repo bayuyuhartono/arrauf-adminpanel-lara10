@@ -26,6 +26,25 @@ class Cms extends Model
         return $query;
     }
 
+    // ppdb
+    public function scopeGetPpdb($query)
+    {
+        $query = DB::table("cms_ppdb")
+            ->select('*')
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdatePpdb($query, $data)
+    {
+        $query = DB::table("cms_ppdb")
+            ->where('id',$data['id'])
+            ->update($data);
+
+        return $query;
+    }
+
     // quote
     public function scopeGetQuote($query)
     {
@@ -193,6 +212,53 @@ class Cms extends Model
     {
         $query = DB::table("cms_gallery")
             ->where('uuid',$uuid)
+            ->delete();
+
+        return $query;
+    }
+
+    // benefit
+    public function scopeGetBenefitList($query)
+    {
+        $query = DB::table("cms_benefit")
+            ->select('*')
+            ->orderBy('sequence', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function scopeSaveBenefit($query, $data)
+    {
+        $query = DB::table("cms_benefit")
+            ->insert($data);
+
+        return $query;
+    }
+
+    public function scopeGetBenefit($query, $id)
+    {
+        $query = DB::table("cms_benefit")
+            ->select('*')
+            ->where('id', $id)
+            ->first();
+
+        return $query;
+    }
+
+    public function scopeUpdateBenefit($query, $id, $data)
+    {
+        $query = DB::table("cms_benefit")
+            ->where('id',$id)
+            ->update($data);
+
+        return $query;
+    }
+
+    public function scopeDeleteBenefit($query, $id)
+    {
+        $query = DB::table("cms_benefit")
+            ->where('id',$id)
             ->delete();
 
         return $query;
