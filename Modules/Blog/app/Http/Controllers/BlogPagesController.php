@@ -8,28 +8,28 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Blog;
 
-class BlogNewsController extends Controller
+class BlogPagesController extends Controller
 {
     private $category;
 
     public function __construct()
     {
-        $this->category = 'NEWS';
+        $this->category = 'PAGE';
     }
 
     public function index()
     {
-        $data['title'] = 'Blog News';
+        $data['title'] = 'Blog Halaman';
         $data['list'] = Blog::getBlogList($this->category);
 
-        return view('blog::news.list', $data);
+        return view('blog::pages.list', $data);
     }
 
     public function add()
     {
-        $data['title'] = 'Blog News';
+        $data['title'] = 'Blog Halaman';
 
-        return view('blog::news.add', $data);
+        return view('blog::pages.add', $data);
     }
 
     public function store(Request $request)
@@ -38,14 +38,15 @@ class BlogNewsController extends Controller
         $uuid = generateUuid();
         
         if (isset($request->image)) {
-            $path = 'assets/images/blog/news/';
-            $imageName = $slug.'-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
+            $path = 'assets/images/blog/pages/';
+            $imageName = $slug.'-pg-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
             $request->image->move(public_path($path), $imageName);
             $saveData['image'] = $path.$imageName;
         }
 
         $saveData['uuid'] = $uuid;
         $saveData['category'] = $this->category;
+        $saveData['code'] = $request->code;
         $saveData['title'] = $request->title;
         $saveData['content'] = $request->content;
         $saveData['tags'] = $request->tags;
@@ -53,15 +54,15 @@ class BlogNewsController extends Controller
         $saveData['slug'] = $slug;
         Blog::saveBlog($saveData);
 
-        return back()->with('success', 'News berhasil ditambah!');
+        return back()->with('success', 'Page berhasil ditambah!');
     }
 
     public function edit(Request $request, $uuid)
     {
-        $data['title'] = 'Blog News';
+        $data['title'] = 'Blog Halaman';
         $data['data'] = Blog::getBlog($uuid);
 
-        return view('blog::news.edit', $data);
+        return view('blog::pages.edit', $data);
     }
 
     public function update(Request $request, $uuid)
@@ -69,13 +70,14 @@ class BlogNewsController extends Controller
         $slug = sluggify($request->title);
 
         if (isset($request->image)) {
-            $path = 'assets/images/blog/news/';
-            $imageName = $slug.'-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
+            $path = 'assets/images/blog/pages/';
+            $imageName = $slug.'-pg-arrauf'.substr($uuid, 0, 3).'.'.$request->image->extension();  
             $request->image->move(public_path($path), $imageName);
             $updateData['image'] = $path.$imageName;
         }
 
         $updateData['category'] = $this->category;
+        $updateData['code'] = $request->code;
         $updateData['title'] = $request->title;
         $updateData['content'] = $request->content;
         $updateData['tags'] = $request->tags;
@@ -83,13 +85,13 @@ class BlogNewsController extends Controller
         $updateData['slug'] = $slug;
         Blog::updateBlog($uuid, $updateData);
 
-        return back()->with('success', 'News berhasil diubah!');
+        return back()->with('success', 'Page berhasil diubah!');
     }
 
     public function delete(Request $request, $uuid)
     {
         Blog::deleteBlog($uuid);
 
-        return back()->with('success', 'News berhasil dihapus!');
+        return back()->with('success', 'Page berhasil dihapus!');
     }
 }
