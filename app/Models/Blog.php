@@ -12,7 +12,7 @@ class Blog extends Model
         $query = DB::table("blog")
             ->select('*')
             ->where('category', $category)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
 
         return $query;
